@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --neon-red: #ff2a2a;
+  --neon-cyan: #00f0ff;
+  --bg-dark: #050505;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* CRT / Scanline Effect */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.2)
+  );
+  background-size: 100% 4px;
+}
+
+/* Vignette / Edge shadow */
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 40;
+  background: radial-gradient(circle at center, transparent 40%, rgba(0,0,0, 0.8) 100%);
+}
+
+/* Cyberpunk HUD Frame */
+.hud-panel {
+  background: rgba(10, 10, 15, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  backdrop-filter: blur(8px);
+  position: relative;
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 16px) 0, 
+    100% 16px, 
+    100% 100%, 
+    16px 100%, 
+    0 calc(100% - 16px)
+  );
+}
+.hud-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--neon-cyan);
+  opacity: 0.5;
+}
+
+.hud-panel-red {
+  border-color: rgba(255, 42, 42, 0.2);
+}
+.hud-panel-red::before {
+  background: var(--neon-red);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 10px rgba(255, 42, 42, 0.6);
+}
+
+.hud-line {
+  position: absolute;
+  background: var(--neon-cyan);
+  opacity: 0.3;
+}
+
+/* Scrollbar hiding for clean UI */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+}

@@ -1,0 +1,6 @@
+{
+  "name": "CyberOps Observability",
+  "description": "Futuristic cyberpunk observability platform with interactive 3D city and mission control HUD.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
